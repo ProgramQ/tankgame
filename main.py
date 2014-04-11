@@ -1,6 +1,6 @@
-import pygame,sys
+import pygame, sys, MAP
 from pygame.locals import *
-import MAP
+from tank import Tank
 
 class Cloud:
     def __init__(self):
@@ -18,7 +18,6 @@ pygame.init()
 DISPLAYSURF = pygame.display.set_mode((MAP.MAPWIDTH * MAP.TILESIZE, MAP.MAPHEIGHT * MAP.TILESIZE))
 
 pygame.display.set_caption('Tank Game')
-DISPLAYSURF.fill((10, 218, 255))
 
 mcloud = Cloud()
 
@@ -30,7 +29,9 @@ while True:
             #and the game and close the window
             pygame.quit()
             sys.exit()
- 
+
+    DISPLAYSURF.fill((10, 218, 255))
+
     #loop through each row
     for row in range(MAP.MAPHEIGHT):
         #loop through each column in the row
@@ -38,7 +39,7 @@ while True:
             #draw the resource at that position in the tilemap.
             if MAP.tilemap[row][column] == 1:
                 pygame.draw.rect(DISPLAYSURF, (210,180,140), (column * MAP.TILESIZE, row * MAP.TILESIZE, MAP.TILESIZE, MAP.TILESIZE))
- 
+
     mcloud.update()
     mcloud.draw(DISPLAYSURF)
 
